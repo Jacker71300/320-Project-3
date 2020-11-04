@@ -8,7 +8,7 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField] float projectileSpeed = 20f;
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(Controls.Instance.Fire))
         {
             BulletScript Temp = Instantiate(projectile).GetComponent<BulletScript>();
             Temp.transform.position = transform.position;

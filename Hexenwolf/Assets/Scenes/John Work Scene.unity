@@ -406,7 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 316269012}
   minMouseDisplacementRadius: 0.25
-  displacementScale: 2
+  displacementScale: 3
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -434,7 +434,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

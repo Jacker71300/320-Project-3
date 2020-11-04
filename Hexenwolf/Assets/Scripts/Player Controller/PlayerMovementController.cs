@@ -62,20 +62,20 @@ public class PlayerMovementController : MonoBehaviour
     void UpdateMoveControls()
     {
         float x = 0, y = 0;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(Controls.Instance.Left))
         {
             x = -1;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(Controls.Instance.Right))
         {
             x = 1;
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(Controls.Instance.Up))
         {
             y = 1;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(Controls.Instance.Down))
         {
             y = -1;
         }
