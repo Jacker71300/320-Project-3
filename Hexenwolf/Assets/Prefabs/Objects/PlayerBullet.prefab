@@ -97,12 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 928576759836986915}
-  damageCollisions:
-    serializedVersion: 2
-    m_Bits: 0
-  destructionCollisions:
-    serializedVersion: 2
-    m_Bits: 0
   timeDuration: 20
 --- !u!50 &928576759836986915
 Rigidbody2D:

@@ -6,8 +6,6 @@ public class BulletScript : MonoBehaviour
 {
 	[SerializeField]Rigidbody2D rb;
 	float speed;
-	[SerializeField] LayerMask damageCollisions;
-	[SerializeField] LayerMask destructionCollisions;
 	[SerializeField] float timeDuration = 20f;
 	Vector2 direction;
 
@@ -37,6 +35,41 @@ public class BulletScript : MonoBehaviour
 		{
 			rb = GetComponent<Rigidbody2D>();
 		}
+	}
+
+	/// <summary>
+	/// Handles all the collision when things are hit by the bullet
+	/// </summary>
+	/// <param name="other"></param>
+	public void OnTriggerEnter2D(Collider2D other)
+	{
+		print("sup");
+		switch(other.gameObject.tag)
+		{
+			case "Damageable":
+				// Do damage to other object then destroy this bullet
+				Debug.Log("Damageable");
+				Destroy(gameObject); 
+				break;
+			case "Breakable":
+				// Break the other object then destroy this bullet
+				Debug.Log("Breakable");
+				Destroy(other.gameObject); // This needs to be changed
+				Destroy(gameObject);
+				break;
+			case "Player":
+				// Check to see if the projectile was shot by the player before doing damage
+				break;
+			case "Bullet":
+				// Do nothing so bullets don't break when hitting each other
+				break;
+			default:
+				// Destroy this bullet
+				Destroy(gameObject);
+				break;
+
+		}
+
 	}
 
 }
