@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class KeyAssignmentHelper : MonoBehaviour
 {
-	Button[] children;
+	public Button[] buttons;// children;
 
 	private void Start()
 	{
-		children = GetComponentsInChildren<Button>();
+		//children = GetComponentsInChildren<Button>();
 		updateButtonText();
+		
 	}
 	public void AssignKey(int index)
 	{
@@ -23,10 +26,10 @@ public class KeyAssignmentHelper : MonoBehaviour
 
 	private void updateButtonText()
 	{
-		children[0].GetComponentInChildren<Text>().text = Controls.Instance.Left.ToString();
-		children[1].GetComponentInChildren<Text>().text = Controls.Instance.Right.ToString();
-		children[2].GetComponentInChildren<Text>().text = Controls.Instance.Up.ToString();
-		children[3].GetComponentInChildren<Text>().text = Controls.Instance.Down.ToString();
-		children[4].GetComponentInChildren<Text>().text = Controls.Instance.Fire.ToString();
+		buttons[0].GetComponentInChildren<TextMeshProUGUI>().text = Controls.Instance.Left.ToString();
+		buttons[1].GetComponentInChildren<TextMeshProUGUI>().text = Controls.Instance.Right.ToString();
+		buttons[2].GetComponentInChildren<TextMeshProUGUI>().text = Controls.Instance.Up.ToString();
+		buttons[3].GetComponentInChildren<TextMeshProUGUI>().text = Controls.Instance.Down.ToString();
+		buttons[4].GetComponentInChildren<TextMeshProUGUI>().text = Controls.Instance.Fire.ToString();
 	}
 }
