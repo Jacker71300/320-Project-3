@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour
 	float speed;
 	[SerializeField] float timeDuration = 20f;
 	Vector2 direction;
+	[SerializeField] float damage;
 
 
 	private void Start()
@@ -43,18 +44,15 @@ public class BulletScript : MonoBehaviour
 	/// <param name="other"></param>
 	public void OnTriggerEnter2D(Collider2D other)
 	{
-		print("sup");
 		switch(other.gameObject.tag)
 		{
 			case "Damageable":
 				// Do damage to other object then destroy this bullet
-				Debug.Log("Damageable");
 				Destroy(gameObject); 
 				break;
 			case "Breakable":
 				// Break the other object then destroy this bullet
-				Debug.Log("Breakable");
-				Destroy(other.gameObject); // This needs to be changed
+				other.gameObject.GetComponent<BreakableObjectScript>().GetHit(damage);
 				Destroy(gameObject);
 				break;
 			case "Player":
