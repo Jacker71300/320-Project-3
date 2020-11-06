@@ -278,7 +278,6 @@ GameObject:
   - component: {fileID: 324213122}
   - component: {fileID: 324213121}
   - component: {fileID: 324213120}
-  - component: {fileID: 324213123}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -351,21 +350,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &324213123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324213119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad96a9739c4e5a44da76dcbc24c1f837, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 1036747439}
-  minMouseDisplacementRadius: 0.25
-  displacementScale: 2
 --- !u!1 &489497941
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +510,8 @@ GameObject:
   - component: {fileID: 1036747442}
   - component: {fileID: 1036747441}
   - component: {fileID: 1036747440}
+  - component: {fileID: 1036747447}
+  - component: {fileID: 1036747446}
   m_Layer: 0
   m_Name: PlayerChar
   m_TagString: Player
@@ -545,9 +531,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5423ba21a8fef324bbcdecebc88527ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 726585629025606542, guid: 8b21356a49f5b1a49a091e23958a6300,
-    type: 3}
-  projectileSpeed: 20
+  isInRangedMode: 1
+  firing: 0
 --- !u!114 &1036747441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,3 +660,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1036747446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036747439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245fc6716d5b4f145b3e07e481c92c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 726585629025606542, guid: 8b21356a49f5b1a49a091e23958a6300,
+    type: 3}
+  projectileSpeed: 20
+  roundsPerMinute: 120
+--- !u!114 &1036747447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036747439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda147ba29855444cbf085f03be32cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeTrigger: {fileID: 0}
+  projectileSpeed: 20
+  roundsPerMinute: 290
