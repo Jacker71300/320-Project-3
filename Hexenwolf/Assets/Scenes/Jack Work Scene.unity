@@ -150,9 +150,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 306538672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1402ad671c4ce534786012a6624acd2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f501a65c6845e24ca9c9df24a5bc65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DroppedObject: {fileID: 0}
+  Health: 1
+  DestroyedObject: {fileID: 0}
 --- !u!61 &306538674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -392,9 +395,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 489497941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1402ad671c4ce534786012a6624acd2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f501a65c6845e24ca9c9df24a5bc65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DroppedObject: {fileID: 0}
+  Health: 1
+  DestroyedObject: {fileID: 0}
 --- !u!61 &489497943
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 928576759836986915}
   timeDuration: 20
+  damage: 1
 --- !u!50 &928576759836986915
 Rigidbody2D:
   serializedVersion: 4
