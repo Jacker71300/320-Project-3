@@ -4,17 +4,32 @@ using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    [SerializeField] GameObject projectile;
-    [SerializeField] float projectileSpeed = 20f;
+    [SerializeField] bool isInRangedMode = true;
+    public bool firing = false;
+
     void Update()
     {
-        if (Input.GetKeyDown(Controls.Instance.Fire))
+        // Determine buffered firing state
+        if(Input.GetKeyDown(Controls.Instance.Fire) && !firing)
         {
-            BulletScript Temp = Instantiate(projectile).GetComponent<BulletScript>();
-            Temp.transform.position = transform.position;
-            if (Temp != null)
+            firing = true;
+        }
+        else if(Input.GetKeyUp(Controls.Instance.Fire) && firing)
+        {
+            firing = false;
+        }
+
+
+        if (firing)
+        {
+            // Ranged attacks
+            if (isInRangedMode)
             {
-                Temp.Initialize(Camera.main.ScreenToWorldPoint(Input.mousePosition) -transform.position,projectileSpeed);
+                GetComponent<RangedWeaponScript>().Attack();
+            }
+            else // Melee attacks
+            {
+                GetComponent<MeleeWeaponScript>().Attack();
             }
             
         }
