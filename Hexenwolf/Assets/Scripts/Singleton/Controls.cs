@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Controls : Singleton<Controls>
 {
-    public KeyCode Left  { get { return keys[0]; } }
-    public KeyCode Right { get { return keys[1]; } }
-    public KeyCode Up    { get { return keys[2]; } }
-    public KeyCode Down  { get { return keys[3]; } }
-    public KeyCode Fire  { get { return keys[4]; } }
+    public KeyCode Left  { get { return keyHolders[0].Code; } }
+    public KeyCode Right { get { return keyHolders[1].Code; } }
+    public KeyCode Up    { get { return keyHolders[2].Code; } }
+    public KeyCode Down  { get { return keyHolders[3].Code; } }
+    public KeyCode Fire  { get { return keyHolders[4].Code; } }
 
-    private KeyCode[] keys = new KeyCode[5];
-    private string[] keyLocations = new string[] { "left", "right", "up", "down", "fire" };
+    private KeyHolder[] keyHolders;
 
     private bool updatingKeyCode = false;
     private int updatingKeyOfIndex;
@@ -21,11 +20,12 @@ public class Controls : Singleton<Controls>
     {
         base.Awake();
 
-        keys = new KeyCode[] { (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString(keyLocations[0], "A")),
-            (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(keyLocations[1], "D")),
-            (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(keyLocations[2], "W")),
-            (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(keyLocations[3], "S")),
-            (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(keyLocations[4], "Mouse0"))
+        keyHolders = new KeyHolder[] {
+            new KeyHolder("left","A"),
+            new KeyHolder("right", "D"),
+            new KeyHolder("up", "W"),
+            new KeyHolder("down", "S"),
+            new KeyHolder("fire","Mouse0")
         };
     }
 
@@ -43,8 +43,7 @@ public class Controls : Singleton<Controls>
                     KeyCode temp;
                     if (keyEvent.isKey) temp = keyEvent.keyCode;
                     else temp = ConvertMouseIntToKeycode(keyEvent.button);
-                    keys[updatingKeyOfIndex] = temp;
-                    PlayerPrefs.SetString(keyLocations[updatingKeyOfIndex], keys[updatingKeyOfIndex].ToString());
+                    keyHolders[updatingKeyOfIndex].SetKey(temp);
                 }
             }
 
@@ -62,7 +61,15 @@ public class Controls : Singleton<Controls>
         {
             code = ConvertMouseIntToKeycode(key.button);
         }
-        return !(code == Right || code == Left || code == Up || code == Down || code ==Fire);
+
+        bool temp = true;
+
+        foreach (KeyHolder holder in keyHolders)
+        {
+            if (holder.Code == code) temp = false;
+        }
+
+        return temp;
 
     }
 
