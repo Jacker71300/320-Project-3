@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeTriggerScript : MonoBehaviour
 {
-    [SerializeField] float damage;
+    [SerializeField] float damage = 1;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -24,8 +24,7 @@ public class MeleeTriggerScript : MonoBehaviour
                 // Do nothing so bullets don't break when hitting each other
                 break;
             default:
-                // Destroy this bullet
-                Destroy(gameObject);
+                // Do nothing so the claws just disappear
                 break;
 
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeControllerScript : MonoBehaviour
 {
-    [SerializeField] float lifeTime;
+    [SerializeField] float lifeTime = 0.2f;
     float lifeTimeLeft;
 
     [SerializeField] GameObject rightClaw;

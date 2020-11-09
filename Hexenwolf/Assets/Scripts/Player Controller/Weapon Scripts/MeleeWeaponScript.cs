@@ -5,8 +5,7 @@ using UnityEngine;
 public class MeleeWeaponScript : MonoBehaviour
 {
     [SerializeField] GameObject meleeController;
-    [SerializeField] float projectileSpeed = 20f;
-    [SerializeField] float roundsPerMinute = 290f;
+    [SerializeField] float roundsPerMinute = 250f;
 
     float timeToShoot;
 

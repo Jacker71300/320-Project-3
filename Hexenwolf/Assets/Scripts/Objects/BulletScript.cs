@@ -8,7 +8,7 @@ public class BulletScript : MonoBehaviour
 	float speed;
 	[SerializeField] float timeDuration = 20f;
 	Vector2 direction;
-	[SerializeField] float damage;
+	[SerializeField] float damage = 1f;
 
 
 	private void Start()
