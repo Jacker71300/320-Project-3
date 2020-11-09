@@ -7,7 +7,7 @@ public class PlayerInteractionController : MonoBehaviour
     public InteractableScript currentInteractable;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(Controls.Instance.Interact))
         {
             Debug.Log("E pressed"); 
             if (currentInteractable != null)

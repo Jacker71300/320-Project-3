@@ -9,6 +9,7 @@ public class Controls : Singleton<Controls>
     public KeyCode Up    { get { return keyHolders[2].Code; } }
     public KeyCode Down  { get { return keyHolders[3].Code; } }
     public KeyCode Fire  { get { return keyHolders[4].Code; } }
+    public KeyCode Interact  { get { return keyHolders[5].Code; } }
 
     private KeyHolder[] keyHolders;
 
@@ -25,7 +26,8 @@ public class Controls : Singleton<Controls>
             new KeyHolder("right", "D"),
             new KeyHolder("up", "W"),
             new KeyHolder("down", "S"),
-            new KeyHolder("fire","Mouse0")
+            new KeyHolder("fire","Mouse0"),
+            new KeyHolder("interact","E")
         };
     }
 
