@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    [SerializeField] bool isInRangedMode = true;
+    public bool isInRangedMode = true;
     public bool firing = false;
 
     void Update()
@@ -17,6 +17,13 @@ public class PlayerWeaponController : MonoBehaviour
         else if(Input.GetKeyUp(Controls.Instance.Fire) && firing)
         {
             firing = false;
+        }
+        else if(Input.GetKeyDown(Controls.Instance.Transform) // Determine if transform has been activated
+            && GetComponent<PlayerStats>().TransformPercentage >= 100f 
+            && !GetComponent<PlayerStats>().isTransformed)
+        {
+            GetComponent<PlayerStats>().isTransformed = true;
+            isInRangedMode = false; // Go to melee mode
         }
 
 

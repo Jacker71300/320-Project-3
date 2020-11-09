@@ -11,17 +11,17 @@ public class MeleeTriggerScript : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Damageable":
-                // Do damage to other object then destroy this bullet
+                // Do damage to other object 
                 break;
             case "Breakable":
-                // Break the other object then destroy this bullet
+                // Break the other object
                 other.gameObject.GetComponent<BreakableObjectScript>().GetHit(damage);
                 break;
             case "Player":
-                // Check to see if the projectile was shot by the player before doing damage
+                //Don't scratch yourself - duh
                 break;
             case "Bullet":
-                // Do nothing so bullets don't break when hitting each other
+                // Do nothing because claws can't destroy bullets
                 break;
             default:
                 // Do nothing so the claws just disappear
