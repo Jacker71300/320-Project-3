@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeWeaponScript : MonoBehaviour
 {
-    [SerializeField] GameObject meleeTrigger;
+    [SerializeField] GameObject meleeController;
     [SerializeField] float projectileSpeed = 20f;
     [SerializeField] float roundsPerMinute = 290f;
 
@@ -21,7 +21,7 @@ public class MeleeWeaponScript : MonoBehaviour
     {
         if (timeToShoot <= 0f)
         {
-            meleeTrigger.GetComponent<MeleeTriggerScript>().Attack();
+            meleeController.GetComponent<MeleeControllerScript>().Attack();
             timeToShoot += 60f / roundsPerMinute;
 
             GetComponent<PlayerWeaponController>().firing = false;
