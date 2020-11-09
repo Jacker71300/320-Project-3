@@ -21,9 +21,9 @@ public class MeleeControllerScript : MonoBehaviour
         }
         else if(active)
         {
-            if (isClawLeft)
+            if(leftClaw.activeSelf)
                 leftClaw.SetActive(false);
-            else
+            if(rightClaw.activeSelf)
                 rightClaw.SetActive(false);
 
             active = false;
