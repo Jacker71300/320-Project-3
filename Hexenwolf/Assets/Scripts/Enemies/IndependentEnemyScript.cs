@@ -13,25 +13,30 @@ public enum AIState
 
 public class IndependentEnemyScript : MonoBehaviour
 {
-	[SerializeField] AIDestinationSetter targetSetter;
-	[SerializeField] GameObject detector; //the graphics game object that holds which way the 
-	AIState state;
+	[SerializeField] GameObject enemyTarget;
+	[SerializeField] float hearingRadius = 4f;
+	[SerializeField] EnemyVisionCone visionCone;
+	[SerializeField] float playerSpottingEscapeTime = 2f;
+	[SerializeField] float investigationTime = 4f;
+	[SerializeField] LayerMask playerLayer;
+	[SerializeField] LayerMask visionObstructingLayer;
+	float timeSinceLastSpottedPLayer = 0f;
+	float waitTimer = 0f;
+	AIState state = AIState.Patrol;
 
 	private void Start()
 	{
-		if (targetSetter == null)
-		{
-			targetSetter = GetComponent<AIDestinationSetter>();
-			if (targetSetter == null)
-			{
-				Debug.LogError("IndependentEnemyScript on "+gameObject.name+" could not find an AIDestinationSetter");
-			}
-		}
 
-		if (detector == null)
+		if (visionCone == null)
 		{
-			Debug.LogError("No Detector found on " +gameObject.name);
+			visionCone = GetComponentInChildren<EnemyVisionCone>();
 		}
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.DrawWireSphere(transform.position, hearingRadius);
+		Gizmos.DrawLine(transform.position, transform.position + transform.up * 6);
 	}
 
 	private void Update()
@@ -65,12 +70,13 @@ public class IndependentEnemyScript : MonoBehaviour
 			if (SpotPlayer())//if we are not engaged already and we've spotted the player
 			{
 				state = AIState.Engage;
-				targetSetter.target = PlayerInfo.Instance.playerPos;
+				enemyTarget.transform.position = PlayerInfo.Instance.playerPos.position;
 				return;
 			}
 			if (DetectAction())
 			{
 				state = AIState.PathtoAction;
+				enemyTarget.transform.position = PlayerInfo.Instance.playerPos.position;
 				return;
 			}
 
@@ -80,18 +86,27 @@ public class IndependentEnemyScript : MonoBehaviour
 
 	private bool SpotPlayer()
 	{
+		if (visionCone.CanSeePlayer(playerLayer)){
+			Debug.Log("sees player in vision cone");
+			RaycastHit2D line = Physics2D.Raycast(transform.position, PlayerInfo.Instance.playerPos.transform.position - transform.position, 100f, visionObstructingLayer);
+			if (!line)
+			{
+				return true;
+			}
+		}
+
 		return false;
 	}
 
 	private bool DetectAction()
 	{
-		return PlayerInfo.Instance.hasShot;
+		return PlayerInfo.Instance.hasShot && (PlayerInfo.Instance.playerPos.transform.position - transform.position).magnitude < hearingRadius;
 	}
 
 
 	private void UpdateEngaged()
-	{ 
-		
+	{
+		enemyTarget.transform.position = PlayerInfo.Instance.transform.position;
 	}
 
 	private void UpdatePathToAction()
