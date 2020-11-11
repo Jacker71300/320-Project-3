@@ -26,8 +26,6 @@ public class PlayerWeaponController : MonoBehaviour
             isInRangedMode = false; // Go to melee mode
         }
 
-
-
         if (firing)
         {
             // Ranged attacks
