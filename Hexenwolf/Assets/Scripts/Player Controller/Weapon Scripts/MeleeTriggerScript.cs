@@ -4,58 +4,27 @@ using UnityEngine;
 
 public class MeleeTriggerScript : MonoBehaviour
 {
-    [SerializeField] float damage;
-    [SerializeField] float lifeTime;
-    float lifeTimeLeft;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(lifeTimeLeft >= 0)
-        {
-            lifeTimeLeft -= Time.deltaTime;
-        }
-        else
-        {
-            GetComponent<Collider2D>().enabled = false;
-        }
-    }
-
-    public void Attack()
-    {
-        //Make trigger active
-        lifeTimeLeft = lifeTime;
-        GetComponent<Collider2D>().enabled = true;
-    }
+    [SerializeField] float damage = 1;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         switch (other.gameObject.tag)
         {
             case "Damageable":
-                // Do damage to other object then destroy this bullet
-                Destroy(gameObject);
+                // Do damage to other object 
                 break;
             case "Breakable":
-                // Break the other object then destroy this bullet
+                // Break the other object
                 other.gameObject.GetComponent<BreakableObjectScript>().GetHit(damage);
-                Destroy(gameObject);
                 break;
             case "Player":
-                // Check to see if the projectile was shot by the player before doing damage
+                //Don't scratch yourself - duh
                 break;
             case "Bullet":
-                // Do nothing so bullets don't break when hitting each other
+                // Do nothing because claws can't destroy bullets
                 break;
             default:
-                // Destroy this bullet
-                Destroy(gameObject);
+                // Do nothing so the claws just disappear
                 break;
 
         }
