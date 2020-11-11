@@ -17,14 +17,8 @@ public class EnemyLineOfSightScript : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 direction = PlayerInfo.Instance.playerPos.position - transform.position;
-        Debug.Log("direction: " + direction);
-        Debug.Log("location: " + PlayerInfo.Instance.playerPos.position);
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 10f, mask.value);
-
-        Debug.DrawLine(transform.position, direction * 10f, Color.red);
-        Debug.DrawLine(transform.position, PlayerInfo.Instance.playerPos.position, Color.blue);
-        Debug.Log(hit.transform);
 
         if(hit.transform.CompareTag("Player"))
         {
