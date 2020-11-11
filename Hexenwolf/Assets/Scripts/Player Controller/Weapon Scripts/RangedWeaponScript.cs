@@ -28,7 +28,7 @@ public class RangedWeaponScript : MonoBehaviour
             Temp.transform.position = transform.position;
             if (Temp != null)
             {
-                Temp.Initialize(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position, projectileSpeed);
+                Temp.Initialize(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position, projectileSpeed, true);
             }
             timeToShoot += 60f / roundsPerMinute;
             PlayerInfo.Instance.hasShot = true;

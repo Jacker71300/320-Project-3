@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -80,6 +81,6 @@ public class PlayerStats : MonoBehaviour
     // Everything that needs to happen when the player dies
     public void Die()
     {
-
+        Debug.Log("Player has died");
     }
 }
