@@ -31,8 +31,12 @@ public class RangedWeaponScript : MonoBehaviour
                 Temp.Initialize(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position, projectileSpeed);
             }
             timeToShoot += 60f / roundsPerMinute;
-
+            PlayerInfo.Instance.hasShot = true;
             GetComponent<PlayerWeaponController>().firing = false;
+        }
+        else
+        {
+            PlayerInfo.Instance.hasShot = false;
         }
     }
 }

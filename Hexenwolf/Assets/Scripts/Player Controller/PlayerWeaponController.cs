@@ -20,6 +20,7 @@ public class PlayerWeaponController : MonoBehaviour
         }
 
 
+
         if (firing)
         {
             // Ranged attacks
