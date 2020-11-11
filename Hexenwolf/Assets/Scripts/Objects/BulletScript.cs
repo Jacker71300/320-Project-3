@@ -74,9 +74,12 @@ public class BulletScript : MonoBehaviour
 					Destroy(gameObject);
 				}
 				break;
-			default:
+			case "Wall":
 				// Destroy this bullet
 				Destroy(gameObject);
+				break;
+			default:
+				// Do nothing
 				break;
 
 		}
