@@ -9,6 +9,7 @@ public class BulletScript : MonoBehaviour
 	[SerializeField] float timeDuration = 20f;
 	Vector2 direction;
 	[SerializeField] float damage = 1f;
+	bool fromPlayer;
 
 
 	private void Start()
@@ -17,11 +18,12 @@ public class BulletScript : MonoBehaviour
 		Destroy(gameObject, timeDuration); //destroy this after the duration
 	}
 
-	public void Initialize(Vector3 dir, float Speed)
+	public void Initialize(Vector3 dir, float Speed, bool FromPlayer)
 	{
 		speed = Speed;
 		direction = new Vector2(dir.x,dir.y).normalized;
 		transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+		fromPlayer = FromPlayer;
 	}
 
 	public void FixedUpdate()
@@ -56,14 +58,28 @@ public class BulletScript : MonoBehaviour
 				Destroy(gameObject);
 				break;
 			case "Player":
-				// Check to see if the projectile was shot by the player before doing damage
+				if(!fromPlayer)
+                {
+					other.gameObject.GetComponent<PlayerStats>().TakeDamage((int)damage);
+					Destroy(gameObject);
+				}
 				break;
 			case "Bullet":
 				// Do nothing so bullets don't break when hitting each other
 				break;
-			default:
+			case "Enemy":
+				if(fromPlayer)
+                {
+					// DO damage to enemy
+					Destroy(gameObject);
+				}
+				break;
+			case "Wall":
 				// Destroy this bullet
 				Destroy(gameObject);
+				break;
+			default:
+				// Do nothing
 				break;
 
 		}

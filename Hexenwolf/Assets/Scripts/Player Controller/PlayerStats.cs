@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class PlayerStats : MonoBehaviour
     private float transformRechargeRate = 3f;
     [SerializeField]
     private float transformDepleteRate = 15f;
+    [SerializeField]
+    private float transformDepleteOnHit = 15f;
 
     public float TransformPercentage = 0f;
     public bool HasTransformAbility = false;
@@ -71,15 +74,22 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if(health <= 0)
+        if (!isTransformed)
         {
-            Die();
+            health -= damage;
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+        else
+        {
+            TransformPercentage -= transformDepleteOnHit;
         }
     }
     // Everything that needs to happen when the player dies
     public void Die()
     {
-
+        Debug.Log("Player has died");
     }
 }
