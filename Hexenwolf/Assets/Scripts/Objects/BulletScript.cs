@@ -71,6 +71,7 @@ public class BulletScript : MonoBehaviour
 				if(fromPlayer)
                 {
 					// DO damage to enemy
+					other.gameObject.GetComponent<BreakableObjectScript>().GetHit(1f);
 					Destroy(gameObject);
 				}
 				break;

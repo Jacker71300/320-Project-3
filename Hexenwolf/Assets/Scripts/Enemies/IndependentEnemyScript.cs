@@ -22,6 +22,7 @@ public class IndependentEnemyScript : MonoBehaviour
 	[SerializeField] LayerMask visionObstructingLayer;
 	[SerializeField] PatrolPath path;
 	[SerializeField] float SweepSpeedInDegreesPerSecond = 40f;
+	[SerializeField] EnemyWeaponScript weapon;
 	Vector3 nextPatrolPoint = new Vector3();
 	public float timeSinceLastSpottedPLayer = 0f;
 	public float waitTimer = 0f;
@@ -76,6 +77,8 @@ public class IndependentEnemyScript : MonoBehaviour
 			UpdateWait();
 		}
 
+		weapon.UpdateShootingTimer();
+
 	}
 
 	private void UpdateAiState()
@@ -104,7 +107,8 @@ public class IndependentEnemyScript : MonoBehaviour
 	private bool SpotPlayer()
 	{
 		if (visionCone.CanSeePlayer(playerLayer)){
-			RaycastHit2D line = Physics2D.Raycast(transform.position, PlayerInfo.Instance.playerPos.transform.position - transform.position, 100f, visionObstructingLayer);
+			Vector3 dir = PlayerInfo.Instance.playerPos.transform.position - transform.position;
+			RaycastHit2D line = Physics2D.Raycast(transform.position, dir,dir.magnitude, visionObstructingLayer);
 			if (!line)
 			{
 				return true;
@@ -122,12 +126,17 @@ public class IndependentEnemyScript : MonoBehaviour
 
 	private void UpdateEngaged()
 	{
-		enemyTarget.transform.position = GameObject.Find("PlayerChar").transform.position;
+		enemyTarget.transform.position = PlayerInfo.Instance.playerPos.position;
 
 
 		if (SpotPlayer())
 		{
 			timeSinceLastSpottedPLayer = 0f;
+
+			if (weapon.CanShoot)
+			{
+				weapon.Attack();
+			}
 		}
 		else
 		{

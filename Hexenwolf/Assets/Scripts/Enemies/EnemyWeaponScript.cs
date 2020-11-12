@@ -10,12 +10,18 @@ public class EnemyWeaponScript : MonoBehaviour
 
     [SerializeField] float timeToShoot = .1f;
 
-    void Update()
+    public bool CanShoot
+    {
+        get
+        {
+            return timeToShoot < 0f;
+        }
+    }
+
+    public void UpdateShootingTimer()
     {
         if (timeToShoot > 0f)
             timeToShoot -= Time.deltaTime;
-        else
-            Attack();
 
     }
 
