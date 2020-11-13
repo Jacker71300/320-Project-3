@@ -7,6 +7,8 @@ public class RangedWeaponScript : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed = 20f;
     [SerializeField] float roundsPerMinute = 290f;
+    [SerializeField] AudioClip soundEffect;
+    [SerializeField] float volume = 1f;
 
     float timeToShoot;
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class RangedWeaponScript : MonoBehaviour
             if (Temp != null)
             {
                 Temp.Initialize(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position, projectileSpeed, true);
+                GetComponent<AudioSource>().PlayOneShot(soundEffect, volume);
             }
             timeToShoot += 60f / roundsPerMinute;
             GetComponent<PlayerWeaponController>().firing = false;

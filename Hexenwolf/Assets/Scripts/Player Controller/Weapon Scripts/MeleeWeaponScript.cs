@@ -7,6 +7,7 @@ public class MeleeWeaponScript : MonoBehaviour
     [SerializeField] GameObject meleeController;
     [SerializeField] float roundsPerMinute = 250f;
 
+
     float timeToShoot;
 
     // Update is called once per frame
@@ -21,6 +22,7 @@ public class MeleeWeaponScript : MonoBehaviour
         if (timeToShoot <= 0f)
         {
             meleeController.GetComponent<MeleeControllerScript>().Attack();
+
             timeToShoot += 60f / roundsPerMinute;
 
             GetComponent<PlayerWeaponController>().firing = false;

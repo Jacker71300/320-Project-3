@@ -12,6 +12,10 @@ public class MeleeControllerScript : MonoBehaviour
     [SerializeField] bool isClawLeft = false;
     bool active = false;
 
+    [SerializeField] AudioClip soundEffect1;
+    [SerializeField] AudioClip soundEffect2;
+    [SerializeField] float volume = 1f;
+
     // Update is called once per frame
     void Update()
     {
@@ -37,8 +41,14 @@ public class MeleeControllerScript : MonoBehaviour
         lifeTimeLeft = lifeTime;
         active = true;
         if (isClawLeft)
+        {
             leftClaw.SetActive(true);
+            GetComponent<AudioSource>().PlayOneShot(soundEffect1, volume);
+        }
         else
+        {
             rightClaw.SetActive(true);
+            GetComponent<AudioSource>().PlayOneShot(soundEffect2, volume);
+        }
     }
 }
