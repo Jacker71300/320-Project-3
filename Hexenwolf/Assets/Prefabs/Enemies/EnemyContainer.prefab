@@ -193,6 +193,12 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 5809367302081694291}
+    - target: {fileID: 1635887104443378395, guid: fd2caeaa603d05540aa35574fc74d553,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f0be11dc3fc2d0f42972a98443ea82bb,
+        type: 3}
     - target: {fileID: 2220913191465730064, guid: fd2caeaa603d05540aa35574fc74d553,
         type: 3}
       propertyPath: Health
