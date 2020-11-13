@@ -98,6 +98,7 @@ MonoBehaviour:
   DroppedObject: {fileID: 0}
   Health: 1
   DestroyedObject: {fileID: 0}
+  rescanGraphWhenDestroyed: 1
 --- !u!61 &2152309670342551727
 BoxCollider2D:
   m_ObjectHideFlags: 0
