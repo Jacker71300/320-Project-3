@@ -23,6 +23,9 @@ public class PlayerStats : MonoBehaviour
 
     // Objectives
     public bool[] objectives = new bool[3];
+
+    [SerializeField] GameObject HUD;
+    [SerializeField] GameObject DeathScreen;
     
 
     // Everything objective and inventory related
@@ -30,6 +33,7 @@ public class PlayerStats : MonoBehaviour
     public void Init()
     {
         health = baseHealth;
+        PlayerInfo.Instance.isDead = false;
     }
 
     // Start is called before the first frame update
@@ -99,5 +103,10 @@ public class PlayerStats : MonoBehaviour
     public void Die()
     {
         Debug.Log("Player has died");
+        HUD.SetActive(false);
+        DeathScreen.SetActive(true);
+        PlayerInfo.Instance.isDead = true;
+        gameObject.SetActive(false);
+
     }
 }

@@ -11,4 +11,9 @@ public class PauseMenuButtons : MonoBehaviour
         SceneManager.LoadScene(SceneName, LoadSceneMode.Single);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 }

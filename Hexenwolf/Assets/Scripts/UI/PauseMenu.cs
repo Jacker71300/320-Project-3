@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject userInterface;
     void Update()
     {
+        if (PlayerInfo.Instance.isDead) { return; }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;
