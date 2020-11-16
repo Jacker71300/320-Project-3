@@ -20,6 +20,9 @@ public class PlayerStats : MonoBehaviour
     public float TransformPercentage = 0f;
     public bool HasTransformAbility = false;
     public bool isTransformed = false;
+
+    // Objectives
+    public bool[] objectives = new bool[3];
     
 
     // Everything objective and inventory related
