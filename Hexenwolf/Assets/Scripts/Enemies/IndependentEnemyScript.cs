@@ -23,6 +23,7 @@ public class IndependentEnemyScript : MonoBehaviour
 	[SerializeField] PatrolPath path;
 	[SerializeField] float SweepSpeedInDegreesPerSecond = 40f;
 	[SerializeField] EnemyWeaponScript weapon;
+	[SerializeField] float distanceToPlayerToStartShooting = 3f;
 	Vector3 nextPatrolPoint = new Vector3();
 	public float timeSinceLastSpottedPLayer = 0f;
 	public float waitTimer = 0f;
@@ -54,7 +55,7 @@ public class IndependentEnemyScript : MonoBehaviour
 	private void Update()
 	{
 		UpdateAiState();
-
+		weapon.UpdateShootingTimer();
 
 		if (state == AIState.Engage)
 		{
@@ -77,7 +78,6 @@ public class IndependentEnemyScript : MonoBehaviour
 			UpdateWait();
 		}
 
-		weapon.UpdateShootingTimer();
 
 	}
 
@@ -126,12 +126,28 @@ public class IndependentEnemyScript : MonoBehaviour
 
 	private void UpdateEngaged()
 	{
-		enemyTarget.transform.position = PlayerInfo.Instance.playerPos.position;
+
+		Vector3 playerToThis = PlayerInfo.Instance.playerPos.position - transform.position;
 
 
 		if (SpotPlayer())
 		{
 			timeSinceLastSpottedPLayer = 0f;
+			if (playerToThis.magnitude < distanceToPlayerToStartShooting)
+			{
+				enemyTarget.transform.position = transform.position;
+				float angleBetween = Vector3.Angle(playerToThis, transform.up );
+				if (Mathf.Abs(angleBetween) > 1f)
+				{
+					float angle = Mathf.Atan2(playerToThis.y, playerToThis.x) * Mathf.Rad2Deg - 90f;
+					Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+					transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * SweepSpeedInDegreesPerSecond);
+				}
+			}
+			else
+			{
+				enemyTarget.transform.position = PlayerInfo.Instance.playerPos.position;
+			}
 
 			if (weapon.CanShoot)
 			{
@@ -140,6 +156,7 @@ public class IndependentEnemyScript : MonoBehaviour
 		}
 		else
 		{
+			enemyTarget.transform.position = PlayerInfo.Instance.playerPos.position;
 			timeSinceLastSpottedPLayer += Time.deltaTime;
 			if (timeSinceLastSpottedPLayer > playerSpottingEscapeTime)
 			{

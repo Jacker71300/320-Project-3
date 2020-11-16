@@ -11051,6 +11051,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1051720134020442232, guid: 9d656707fc1440b49adc6dd3d36d3eba,
+        type: 3}
+      propertyPath: roundsPerMinute
+      value: 290
+      objectReference: {fileID: 0}
     - target: {fileID: 5809367302884459604, guid: 9d656707fc1440b49adc6dd3d36d3eba,
         type: 3}
       propertyPath: m_Name

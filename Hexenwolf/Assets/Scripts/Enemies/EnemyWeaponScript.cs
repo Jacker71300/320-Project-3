@@ -9,6 +9,12 @@ public class EnemyWeaponScript : MonoBehaviour
     [SerializeField] float roundsPerMinute = 290f;
 
     [SerializeField] float timeToShoot = .1f;
+    float shotTimer;
+
+    private void Start()
+    {
+        shotTimer = 60f / roundsPerMinute;
+    }
 
     public bool CanShoot
     {
@@ -31,9 +37,9 @@ public class EnemyWeaponScript : MonoBehaviour
         Temp.transform.position = transform.position;
         if (Temp != null)
         {
-            Temp.Initialize(PlayerInfo.Instance.playerPos.position - transform.position, projectileSpeed, false) ;
+            Temp.Initialize(PlayerInfo.Instance.playerPos.position - transform.position, projectileSpeed, false);
         }
-        timeToShoot += 60f / roundsPerMinute;
+        timeToShoot = shotTimer;
 
     }
 }
