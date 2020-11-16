@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public enum AudioState { Stealth, Combat, CombatEnd };
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public AudioState currentState = AudioState.Stealth;
 }
