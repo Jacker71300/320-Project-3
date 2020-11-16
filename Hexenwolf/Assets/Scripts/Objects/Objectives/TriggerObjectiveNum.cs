@@ -12,6 +12,11 @@ public class TriggerObjectiveNum : InteractableScript
         if(objectiveNum >= 0 && objectiveNum < playerStats.objectives.Length)
         {
             playerStats.objectives[objectiveNum] = true;
+            base.Trigger();
+        }
+        else
+        {
+            Debug.LogError("Error: Objective index out of bounds");
         }
     }
 }

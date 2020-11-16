@@ -9,5 +9,6 @@ public class TalismanObjective : InteractableScript
     public override void Trigger()
     {
         playerStats.HasTransformAbility = true;
+        base.Trigger();
     }
 }

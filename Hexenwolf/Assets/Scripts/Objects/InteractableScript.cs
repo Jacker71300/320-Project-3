@@ -7,6 +7,7 @@ public class InteractableScript : MonoBehaviour
     public virtual void Trigger()
     {
         Debug.Log("Triggered");
+        this.transform.parent.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
