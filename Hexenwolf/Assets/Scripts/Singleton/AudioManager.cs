@@ -8,12 +8,13 @@ public class AudioManager : Singleton<AudioManager>
     public enum AudioState { Stealth, StealthToCombat, Combat, CombatToCombatEnd, CombatEnd, CombatEndToStealth };
 
     public AudioState currentState = AudioState.Stealth;
+    public float targetVolume = 0.5f;
+
 
     [SerializeField] float bpmStealth = 140f;
     [SerializeField] float bpmCombat = 110f;
     [SerializeField] float bpmCombatEnd = 110f;
     [SerializeField] float beatsPerMeasure = 4;
-    [SerializeField] float targetVolume = 0.5f;
 
     [SerializeField] AudioSource stealth;
     [SerializeField] AudioSource combat;
@@ -38,6 +39,8 @@ public class AudioManager : Singleton<AudioManager>
             case AudioState.Stealth:
                 UpdateStealth();
 
+                stealth.volume = targetVolume;
+
                 currentBeatCombat = 0f;
                 currentBeatCombatEnd = 0f;
 
@@ -61,6 +64,7 @@ public class AudioManager : Singleton<AudioManager>
                 break;
             case AudioState.Combat:
                 UpdateCombat();
+                combat.volume = targetVolume;
 
                 currentBeatStealth = 0f;
                 currentBeatCombatEnd = 0f;
@@ -83,6 +87,8 @@ public class AudioManager : Singleton<AudioManager>
                 break;
             case AudioState.CombatEnd:
                 UpdateCombatEnd();
+
+                combatEnd.volume = targetVolume;
 
                 if (currentMeasureCombatEnd == 1) // switch back on measure 2
                     currentState = AudioState.CombatEndToStealth;
