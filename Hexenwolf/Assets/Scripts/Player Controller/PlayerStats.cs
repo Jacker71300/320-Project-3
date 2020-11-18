@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -45,6 +46,18 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool won = true;
+        for(int i=0; i<objectives.Length; i++)
+        {
+            if(!objectives[i])
+            {
+                won = false;
+            }
+        }
+        if(won)
+        {
+            SceneManager.LoadScene("Win Scene", LoadSceneMode.Single);
+        }
         // Update the status of the transform ability
         if (HasTransformAbility)
         {
