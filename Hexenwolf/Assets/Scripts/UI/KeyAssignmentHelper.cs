@@ -32,5 +32,6 @@ public class KeyAssignmentHelper : MonoBehaviour
 		buttons[3].GetComponentInChildren<TextMeshProUGUI>().text = Controls.Instance.Down.ToString();
 		buttons[4].GetComponentInChildren<TextMeshProUGUI>().text = Controls.Instance.Fire.ToString();
 		buttons[5].GetComponentInChildren<TextMeshProUGUI>().text = Controls.Instance.Interact.ToString();
+		buttons[6].GetComponentInChildren<TextMeshProUGUI>().text = Controls.Instance.Transform.ToString();
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class AudioManager : Singleton<AudioManager>
     public enum AudioState { Stealth, StealthToCombat, Combat, CombatToCombatEnd, CombatEnd, CombatEndToStealth };
 
     public AudioState currentState = AudioState.Stealth;
+    public float targetVolume = 0.5f;
+
 
     [SerializeField] float bpmStealth = 140f;
     [SerializeField] float bpmCombat = 110f;
@@ -36,6 +39,8 @@ public class AudioManager : Singleton<AudioManager>
             case AudioState.Stealth:
                 UpdateStealth();
 
+                stealth.volume = targetVolume;
+
                 currentBeatCombat = 0f;
                 currentBeatCombatEnd = 0f;
 
@@ -52,12 +57,14 @@ public class AudioManager : Singleton<AudioManager>
                 if(currentBeatStealth == 3 || currentBeatStealth == 1)
                 {
                     currentBeatStealth = 3; // keep the track playing until it's faded out
-                    Crossfade(stealth, combat);
+                    if (Crossfade(stealth, combat))
+                        currentState = AudioState.Combat;
                     UpdateCombat();
                 }
                 break;
             case AudioState.Combat:
                 UpdateCombat();
+                combat.volume = targetVolume;
 
                 currentBeatStealth = 0f;
                 currentBeatCombatEnd = 0f;
@@ -80,6 +87,8 @@ public class AudioManager : Singleton<AudioManager>
                 break;
             case AudioState.CombatEnd:
                 UpdateCombatEnd();
+
+                combatEnd.volume = targetVolume;
 
                 if (currentMeasureCombatEnd == 1) // switch back on measure 2
                     currentState = AudioState.CombatEndToStealth;
@@ -125,22 +134,24 @@ public class AudioManager : Singleton<AudioManager>
         }
         else
         {
-            current.volume -= 0.01f;
+            current.volume -= 0.01f * targetVolume;
         }
 
 
-        if(next.volume == 0f)
+        if(next.volume >= targetVolume)
         {
-            next.enabled = true;
-        }
-        else if(next.volume >= 1f)
-        {
-            next.volume = 1f;
+            next.volume = targetVolume;
             nex = true;
         }
         else
         {
-            next.volume += 0.01f;
+            if (next.volume == 0f)
+            {
+                next.enabled = true;
+                next.Play();
+            }
+
+            next.volume += 0.01f * targetVolume;
         }
 
         return (cur && nex);
