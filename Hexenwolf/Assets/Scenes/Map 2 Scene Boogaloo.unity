@@ -33991,6 +33991,7 @@ MonoBehaviour:
   bloodPrefabs: []
   bloodRadius: 1
   bloodSpawnRate: 1
+  spawnBlood: 0
 --- !u!114 &482704916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41077,11 +41078,11 @@ MonoBehaviour:
   m_SelfShadows: 1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -17.288557, y: 11.864197, z: 0}
-  - {x: -9.288557, y: 11.864197, z: 0}
-  - {x: -9.288557, y: 12.864197, z: 0}
-  - {x: -17.288557, y: 12.864197, z: 0}
-  m_ShapePathHash: 1301185043
+  - {x: -17.11395, y: 12.031212, z: 0}
+  - {x: -9.466959, y: 12.038803, z: 0}
+  - {x: -9.459368, y: 12.697182, z: 0}
+  - {x: -17.10636, y: 12.7085705, z: 0}
+  m_ShapePathHash: -16780145
   m_Mesh: {fileID: 2121205951}
   m_InstanceId: 43398
 --- !u!43 &1894114477
@@ -42165,8 +42166,8 @@ Mesh:
     firstVertex: 0
     vertexCount: 8
     localAABB:
-      m_Center: {x: -13.288557, y: 12.364197, z: 0}
-      m_Extent: {x: 4, y: 0.5, z: 0}
+      m_Center: {x: -13.286659, y: 12.369891, z: 0}
+      m_Extent: {x: 3.8272915, y: 0.3386793, z: 0}
   m_Shapes:
     vertices: []
     shapes: []
@@ -42245,7 +42246,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 224
-    _typelessdata: f74e8ac1c0d34d410000000000000080000080bf0000000000000080ee9d14c1c0d33d4100000000000000800000803f0000008000000080ee9d14c1c0d34d4100000000000080bf000000800000008000000080f74e8ac1c0d33d41000000000000803f000000800000008000000080ee9d14c1c0d34d410000000000000080000080bf0000000000000080f74e8ac1c0d34d41000000000000803f000000800000008000000080ee9d14c1c0d33d4100000000000080bf000000800000008000000080f74e8ac1c0d33d4100000000000000800000803f0000008000000080
+    _typelessdata: d3d988c14e564b41000000000f35c3baedff7fbf0000000000000080aa7817c1f09e404100000000d01d82baf8ff7f3f0000008000000080925917c1a8274b4100000000a5fb7fbf05e63c3c00000080000000805fe988c1d87f404100000000e2fb7f3f2a9b37bc0000008000000080925917c1a8274b41000000000f35c3baedff7fbf0000000000000080d3d988c14e564b4100000000e2fb7f3f2a9b37bc0000008000000080aa7817c1f09e404100000000a5fb7fbf05e63c3c00000080000000805fe988c1d87f404100000000d01d82baf8ff7f3f0000008000000080
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -42299,8 +42300,8 @@ Mesh:
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
-    m_Center: {x: -13.288557, y: 12.364197, z: 0}
-    m_Extent: {x: 4, y: 0.5, z: 0}
+    m_Center: {x: -13.286659, y: 12.369891, z: 0}
+    m_Extent: {x: 3.8272915, y: 0.3386793, z: 0}
   m_MeshUsageFlags: 0
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
