@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  targetVolume: 0.25
   bpmStealth: 140
   bpmCombat: 110
   bpmCombatEnd: 110
   beatsPerMeasure: 4
-  targetVolume: 0.5
   stealth: {fileID: 8990132779768697265}
   combat: {fileID: 8990132779768697278}
   combatEnd: {fileID: 8990132779768697264}
@@ -69,7 +69,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -163,9 +163,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3949c84e637356245879ba2c7b6f738a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

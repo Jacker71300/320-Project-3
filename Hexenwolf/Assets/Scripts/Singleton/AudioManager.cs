@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
@@ -38,6 +39,17 @@ public class AudioManager : Singleton<AudioManager>
         {
             case AudioState.Stealth:
                 UpdateStealth();
+                if (!(stealth.enabled && stealth.isPlaying))
+                {
+                    combat.enabled = false;
+                    combatEnd.enabled = false;
+                    stealth.enabled = true;
+                    stealth.Play();
+
+                    currentBeatStealth = 0f;
+                    currentMeasureStealth = 0f;
+                    currentDeltaStealth = 0f;
+                }
 
                 stealth.volume = targetVolume;
 
@@ -64,6 +76,18 @@ public class AudioManager : Singleton<AudioManager>
                 break;
             case AudioState.Combat:
                 UpdateCombat();
+                if (!(combat.enabled && combat.isPlaying))
+                {
+                    stealth.enabled = false;
+                    combatEnd.enabled = false;
+                    combat.enabled = true;
+                    combat.Play();
+
+                    currentBeatCombat = 0f;
+                    currentMeasureCombat = 0f;
+                    currentDeltaCombat = 0f;
+                }
+
                 combat.volume = targetVolume;
 
                 currentBeatStealth = 0f;
@@ -86,6 +110,19 @@ public class AudioManager : Singleton<AudioManager>
                 }
                 break;
             case AudioState.CombatEnd:
+                if (!(combatEnd.enabled && combatEnd.isPlaying))
+                {
+                    combat.enabled = false;
+                    stealth.enabled = false;
+                    combatEnd.enabled = true;
+                    combatEnd.Play();
+
+                    currentBeatCombatEnd = 0f;
+                    currentMeasureCombatEnd = 0f;
+                    currentDeltaCombatEnd = 0f;
+                }
+
+
                 UpdateCombatEnd();
 
                 combatEnd.volume = targetVolume;
@@ -104,9 +141,11 @@ public class AudioManager : Singleton<AudioManager>
                 break;
             case AudioState.CombatEndToStealth:
                 UpdateCombatEnd();
+
                 if (currentBeatCombatEnd == 3 && currentMeasureCombatEnd == 1)
                 {
                     currentBeatCombatEnd = 3; // keep the track playing until it's faded out
+                    currentDeltaCombatEnd = 0;
                     if (Crossfade(combatEnd, stealth))
                         currentState = AudioState.Stealth;
                     UpdateStealth();

@@ -49,9 +49,9 @@ MonoBehaviour:
   rightClaw: {fileID: 4363118807847659469}
   leftClaw: {fileID: 4363118807354266810}
   isClawLeft: 0
-  soundEffect1: {fileID: 0}
-  soundEffect2: {fileID: 0}
-  volume: 1
+  soundEffect1: {fileID: 8300000, guid: 363b439f938a0ac429839da2b4d13c76, type: 3}
+  soundEffect2: {fileID: 8300000, guid: eb874a9d5abd6aa4e88c49b3ab06fa3a, type: 3}
+  volume: 0.5
 --- !u!1 &4363118807354266810
 GameObject:
   m_ObjectHideFlags: 0
