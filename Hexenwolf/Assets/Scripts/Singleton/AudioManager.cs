@@ -42,7 +42,9 @@ public class AudioManager : Singleton<AudioManager>
                 if (!(stealth.enabled && stealth.isPlaying))
                 {
                     combat.enabled = false;
+                    combat.volume = 0f;
                     combatEnd.enabled = false;
+                    combatEnd.volume = 0f;
                     stealth.enabled = true;
                     stealth.Play();
 
@@ -69,9 +71,19 @@ public class AudioManager : Singleton<AudioManager>
                 if(currentBeatStealth == 3 || currentBeatStealth == 1)
                 {
                     currentBeatStealth = 3; // keep the track playing until it's faded out
-                    if (Crossfade(stealth, combat))
-                        currentState = AudioState.Combat;
-                    UpdateCombat();
+
+                    if (stealth.enabled)
+                    {
+                        if (Crossfade(stealth, combat))
+                            currentState = AudioState.Combat;
+                        UpdateCombat();
+                    }
+                    else
+                    {
+                        if (Crossfade(combatEnd, combat))
+                            currentState = AudioState.Combat;
+                        UpdateCombat();
+                    }
                 }
                 break;
             case AudioState.Combat:
@@ -79,7 +91,9 @@ public class AudioManager : Singleton<AudioManager>
                 if (!(combat.enabled && combat.isPlaying))
                 {
                     stealth.enabled = false;
+                    stealth.volume = 0f;
                     combatEnd.enabled = false;
+                    combatEnd.volume = 0f;
                     combat.enabled = true;
                     combat.Play();
 
@@ -113,7 +127,9 @@ public class AudioManager : Singleton<AudioManager>
                 if (!(combatEnd.enabled && combatEnd.isPlaying))
                 {
                     combat.enabled = false;
+                    combat.volume = 0f;
                     stealth.enabled = false;
+                    stealth.volume = 0f;
                     combatEnd.enabled = true;
                     combatEnd.Play();
 
