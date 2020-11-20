@@ -59,6 +59,11 @@ public class IndependentEnemyScript : MonoBehaviour
 
 		if (state == AIState.Engage)
 		{
+			if (AudioManager.Instance.currentState != AudioManager.AudioState.Combat && AudioManager.Instance.currentState != AudioManager.AudioState.StealthToCombat)
+			{
+				AudioManager.Instance.currentState = AudioManager.AudioState.StealthToCombat;
+			}
+
 			UpdateEngaged();
 			return;
 		}

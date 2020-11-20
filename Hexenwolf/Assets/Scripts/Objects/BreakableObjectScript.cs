@@ -18,6 +18,13 @@ public class BreakableObjectScript : MonoBehaviour
         Health -= Damage;
         if(Health <= 0.0f)
         {
+            // change state to combat end if this is an enemy
+            if (gameObject.tag == "Enemy" && 
+                (AudioManager.Instance.currentState == AudioManager.AudioState.Combat || AudioManager.Instance.currentState == AudioManager.AudioState.StealthToCombat))
+            {
+                AudioManager.Instance.currentState = AudioManager.AudioState.CombatToCombatEnd;
+            }
+
             // Drop an item
             if(DroppedObject != null)
             {
