@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] float bloodRadius = 1.0f;
     [SerializeField] float bloodSpawnRate = 1.0f;
     float currentBloodSpawnRate;
+    [SerializeField] bool spawnBlood = false;
 
     
 
@@ -99,18 +100,21 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
-        // Blood Spotch spawning
-        if(currentBloodSpawnRate >= 0)
+        if (spawnBlood)
         {
-            currentBloodSpawnRate -= Time.deltaTime;
-        }
-        if(currentBloodSpawnRate <= 0)
-        {
-            Vector3 bloodPosition = new Vector3(transform.position.x + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
-                                                transform.position.y + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
-                                                1.0f);
-            GameObject bloodToSpawn = GameObject.Instantiate(bloodPrefabs[health - 1], bloodPosition, Quaternion.identity);
-            currentBloodSpawnRate = bloodSpawnRate;
+            // Blood Spotch spawning
+            if (currentBloodSpawnRate >= 0)
+            {
+                currentBloodSpawnRate -= Time.deltaTime;
+            }
+            if (currentBloodSpawnRate <= 0)
+            {
+                Vector3 bloodPosition = new Vector3(transform.position.x + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
+                                                    transform.position.y + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
+                                                    1.0f);
+                GameObject bloodToSpawn = GameObject.Instantiate(bloodPrefabs[health - 1], bloodPosition, Quaternion.identity);
+                currentBloodSpawnRate = bloodSpawnRate;
+            }
         }
     }
 
