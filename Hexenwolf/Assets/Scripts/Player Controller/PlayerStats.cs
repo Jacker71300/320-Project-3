@@ -27,6 +27,14 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] GameObject HUD;
     [SerializeField] GameObject DeathScreen;
+
+    // Blood Splotches
+    [SerializeField] GameObject[] bloodPrefabs; // From Biggest to smallest
+    [SerializeField] float bloodRadius = 1.0f;
+    [SerializeField] float bloodSpawnRate = 1.0f;
+    float currentBloodSpawnRate;
+    [SerializeField] bool spawnBlood = false;
+
     
 
     // Everything objective and inventory related
@@ -35,6 +43,7 @@ public class PlayerStats : MonoBehaviour
     {
         health = baseHealth;
         PlayerInfo.Instance.isDead = false;
+        currentBloodSpawnRate = bloodSpawnRate;
     }
 
     // Start is called before the first frame update
@@ -88,6 +97,23 @@ public class PlayerStats : MonoBehaviour
                     // Reduce transform percentag while in the transformed state
                     TransformPercentage -= transformDepleteRate * Time.deltaTime;
                 }
+            }
+        }
+
+        if (spawnBlood)
+        {
+            // Blood Spotch spawning
+            if (currentBloodSpawnRate >= 0)
+            {
+                currentBloodSpawnRate -= Time.deltaTime;
+            }
+            if (currentBloodSpawnRate <= 0)
+            {
+                Vector3 bloodPosition = new Vector3(transform.position.x + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
+                                                    transform.position.y + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
+                                                    1.0f);
+                GameObject bloodToSpawn = GameObject.Instantiate(bloodPrefabs[health - 1], bloodPosition, Quaternion.identity);
+                currentBloodSpawnRate = bloodSpawnRate;
             }
         }
     }
