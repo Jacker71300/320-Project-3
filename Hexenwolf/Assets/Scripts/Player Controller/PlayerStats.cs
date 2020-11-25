@@ -80,7 +80,7 @@ public class PlayerStats : MonoBehaviour
                 else if(TransformPercentage > 100f)
                 {
                     TransformPercentage = 100f;
-                    Debug.Log("Transform Ready");
+                    //Debug.Log("Transform Ready");
                 }
             }
             else

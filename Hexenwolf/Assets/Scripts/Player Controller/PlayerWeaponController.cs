@@ -24,6 +24,7 @@ public class PlayerWeaponController : MonoBehaviour
         {
             GetComponent<PlayerStats>().isTransformed = true;
             isInRangedMode = false; // Go to melee mode
+            GameObject.Find("Warden Spawner").GetComponent<WardenSpawner>().SpawnWarden();
         }
 
         if (firing)
