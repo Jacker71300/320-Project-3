@@ -10,6 +10,7 @@ public class BulletScript : MonoBehaviour
 	Vector2 direction;
 	[SerializeField] float damage = 1f;
 	bool fromPlayer;
+	[SerializeField] GameObject bloodSplatter;
 
 
 	private void Start()
@@ -61,19 +62,23 @@ public class BulletScript : MonoBehaviour
 				if(!fromPlayer)
                 {
 					other.gameObject.GetComponent<PlayerStats>().TakeDamage((int)damage);
+					SpawnSplat();
 					Destroy(gameObject);
+
 				}
-				break;
-			case "Bullet":
-				// Do nothing so bullets don't break when hitting each other
+
 				break;
 			case "Enemy":
 				if(fromPlayer)
                 {
 					// DO damage to enemy
 					other.gameObject.GetComponent<BreakableObjectScript>().GetHit(1f);
+					SpawnSplat();
 					Destroy(gameObject);
 				}
+				break;
+			case "Bullet":
+				// Do nothing so bullets don't break when hitting each other
 				break;
 			case "Wall":
 				// Destroy this bullet
@@ -87,4 +92,13 @@ public class BulletScript : MonoBehaviour
 
 	}
 
+	public void SpawnSplat()
+	{
+		if (bloodSplatter != null)
+		{
+			GameObject splat = Instantiate(bloodSplatter);
+			splat.transform.position = gameObject.transform.position;
+			splat.transform.forward = transform.right;
+		}
+	}
 }

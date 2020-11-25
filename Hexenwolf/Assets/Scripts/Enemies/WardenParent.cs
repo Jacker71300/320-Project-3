@@ -11,7 +11,7 @@ public class WardenParent : MonoBehaviour
 	{
 		if (Child == null)
 		{
-			GameObject.Destroy(this);
+			GameObject.Destroy(gameObject);
 		}
 	}
 }

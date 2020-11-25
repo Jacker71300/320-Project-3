@@ -99,6 +99,8 @@ MonoBehaviour:
   rb: {fileID: 928576759836986915}
   timeDuration: 20
   damage: 1
+  bloodSplatter: {fileID: 1642845511595400250, guid: 8474a1e16ed9d93459503294a788013e,
+    type: 3}
 --- !u!50 &928576759836986915
 Rigidbody2D:
   serializedVersion: 4

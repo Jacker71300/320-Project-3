@@ -17,6 +17,12 @@ public class PlayerStats : MonoBehaviour
     private float transformDepleteRate = 15f;
     [SerializeField]
     private float transformDepleteOnHit = 15f;
+    [SerializeField]
+    private float healthRegenRate = 15f;
+    [SerializeField]
+    private bool regeneratingHealth = true;
+    private float healthRegenTimer;
+
 
     public float TransformPercentage = 0f;
     public bool HasTransformAbility = false;
@@ -25,10 +31,13 @@ public class PlayerStats : MonoBehaviour
     // Objectives
     public bool[] objectives = new bool[3];
 
+    [Header("Interface")]
+
     [SerializeField] GameObject HUD;
     [SerializeField] GameObject DeathScreen;
 
     // Blood Splotches
+    [Header("Blood Dripping")]
     [SerializeField] GameObject[] bloodPrefabs; // From Biggest to smallest
     [SerializeField] float bloodRadius = 1.0f;
     [SerializeField] float bloodSpawnRate = 1.0f;
@@ -42,6 +51,7 @@ public class PlayerStats : MonoBehaviour
     public void Init()
     {
         health = baseHealth;
+        healthRegenTimer = healthRegenRate;
         PlayerInfo.Instance.isDead = false;
         currentBloodSpawnRate = bloodSpawnRate;
     }
@@ -109,11 +119,24 @@ public class PlayerStats : MonoBehaviour
             }
             if (currentBloodSpawnRate <= 0)
             {
-                Vector3 bloodPosition = new Vector3(transform.position.x + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
-                                                    transform.position.y + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
-                                                    1.0f);
-                GameObject bloodToSpawn = GameObject.Instantiate(bloodPrefabs[health - 1], bloodPosition, Quaternion.identity);
-                currentBloodSpawnRate = bloodSpawnRate;
+                if (health - 1 < bloodPrefabs.Length)
+                {
+                    Vector3 bloodPosition = new Vector3(transform.position.x + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
+                                                        transform.position.y + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
+                                                        1.0f);
+                    GameObject bloodToSpawn = GameObject.Instantiate(bloodPrefabs[health - 1], bloodPosition, Quaternion.identity);
+                    currentBloodSpawnRate = bloodSpawnRate;
+                }
+            }
+        }
+
+        if (regeneratingHealth && health < baseHealth)
+        {
+            healthRegenTimer -= Time.deltaTime;
+            if (healthRegenTimer < 0)
+            {
+                health += 1;
+                healthRegenTimer = healthRegenRate;
             }
         }
     }

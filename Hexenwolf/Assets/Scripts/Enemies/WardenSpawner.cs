@@ -17,7 +17,7 @@ public class WardenSpawner : MonoBehaviour
 
     public void SpawnWarden()
     {
-        if (_warden != null)
+        if (_warden == null)
         {
             _warden = GameObject.Instantiate(Warden);
             Vector3 pos = PlayerInfo.Instance.transform.position;
@@ -31,6 +31,6 @@ public class WardenSpawner : MonoBehaviour
 
             _warden.transform.position = pos;
         }
-    }
+}
 
 }

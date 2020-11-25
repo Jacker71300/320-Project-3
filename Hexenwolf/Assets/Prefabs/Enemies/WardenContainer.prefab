@@ -91,8 +91,8 @@ MonoBehaviour:
   projectile: {fileID: 9017384833891354150, guid: b60b38cce03159241bbec10377045803,
     type: 3}
   projectileSpeed: 20
-  roundsPerMinute: 100
-  timeToShoot: 0.1
+  roundsPerMinute: 75
+  timeToShoot: 10
 --- !u!1001 &7855964926286765803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165,10 +165,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 957908362467697643, guid: e02a60f0e333050489b1d6058f90073c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 957908362467697643, guid: e02a60f0e333050489b1d6058f90073c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 2796832881531741916, guid: e02a60f0e333050489b1d6058f90073c,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5433591833397969749, guid: e02a60f0e333050489b1d6058f90073c,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5433591833397969749, guid: e02a60f0e333050489b1d6058f90073c,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5433591833397969749, guid: e02a60f0e333050489b1d6058f90073c,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5433591833397969749, guid: e02a60f0e333050489b1d6058f90073c,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5433591833397969749, guid: e02a60f0e333050489b1d6058f90073c,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5524680072680167746, guid: e02a60f0e333050489b1d6058f90073c,
         type: 3}
