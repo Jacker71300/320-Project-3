@@ -9,7 +9,8 @@ public class AudioManager : Singleton<AudioManager>
     public enum AudioState { Stealth, StealthToCombat, Combat, CombatToCombatEnd, CombatEnd, CombatEndToStealth };
 
     public AudioState currentState = AudioState.Stealth;
-    public float targetVolume = 0.5f;
+    public float musicVolume = 0.5f;
+    public float sfxVolume = 0.5f;
 
 
     [SerializeField] float bpmStealth = 140f;
@@ -53,7 +54,7 @@ public class AudioManager : Singleton<AudioManager>
                     currentDeltaStealth = 0f;
                 }
 
-                stealth.volume = targetVolume;
+                stealth.volume = musicVolume;
 
                 currentBeatCombat = 0f;
                 currentBeatCombatEnd = 0f;
@@ -102,7 +103,7 @@ public class AudioManager : Singleton<AudioManager>
                     currentDeltaCombat = 0f;
                 }
 
-                combat.volume = targetVolume;
+                combat.volume = musicVolume;
 
                 currentBeatStealth = 0f;
                 currentBeatCombatEnd = 0f;
@@ -141,7 +142,7 @@ public class AudioManager : Singleton<AudioManager>
 
                 UpdateCombatEnd();
 
-                combatEnd.volume = targetVolume;
+                combatEnd.volume = musicVolume;
 
                 if (currentMeasureCombatEnd == 1) // switch back on measure 2
                     currentState = AudioState.CombatEndToStealth;
@@ -189,13 +190,13 @@ public class AudioManager : Singleton<AudioManager>
         }
         else
         {
-            current.volume -= 0.01f * targetVolume;
+            current.volume -= 0.01f * musicVolume;
         }
 
 
-        if(next.volume >= targetVolume)
+        if(next.volume >= musicVolume)
         {
-            next.volume = targetVolume;
+            next.volume = musicVolume;
             nex = true;
         }
         else
@@ -206,7 +207,7 @@ public class AudioManager : Singleton<AudioManager>
                 next.Play();
             }
 
-            next.volume += 0.01f * targetVolume;
+            next.volume += 0.01f * musicVolume;
         }
 
         return (cur && nex);

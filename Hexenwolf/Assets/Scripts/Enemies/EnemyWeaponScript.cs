@@ -7,6 +7,7 @@ public class EnemyWeaponScript : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed = 20f;
     [SerializeField] float roundsPerMinute = 290f;
+    [SerializeField] AudioClip soundEffect;
 
     [SerializeField] float timeToShoot = .1f;
     float shotTimer;
@@ -38,6 +39,7 @@ public class EnemyWeaponScript : MonoBehaviour
         if (Temp != null)
         {
             Temp.Initialize(PlayerInfo.Instance.playerPos.position - transform.position, projectileSpeed, false);
+            GetComponent<AudioSource>().PlayOneShot(soundEffect, AudioManager.Instance.sfxVolume);
         }
         timeToShoot = shotTimer;
 
