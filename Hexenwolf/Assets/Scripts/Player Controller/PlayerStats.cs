@@ -119,7 +119,7 @@ public class PlayerStats : MonoBehaviour
             }
             if (currentBloodSpawnRate <= 0)
             {
-                if (health - 1 < bloodPrefabs.Length)
+                if (health - 1 < bloodPrefabs.Length && health - 1 >= 0)
                 {
                     Vector3 bloodPosition = new Vector3(transform.position.x + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
                                                         transform.position.y + UnityEngine.Random.Range(-bloodRadius, bloodRadius),
