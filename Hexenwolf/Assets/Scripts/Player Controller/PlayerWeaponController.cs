@@ -6,11 +6,21 @@ public class PlayerWeaponController : MonoBehaviour
 {
     public bool isInRangedMode = true;
     public bool firing = false;
+    [SerializeField] GameObject muzzleFlash;
+    float muzzleTimer = 0;
 
     void Update()
     {
+        if(muzzleTimer>0)
+        {
+            muzzleTimer -= Time.deltaTime;
+        }
+        else
+        {
+            muzzleFlash.SetActive(false);
+        }
         // Determine buffered firing state
-        if(Input.GetKeyDown(Controls.Instance.Fire) && !firing)
+        if (Input.GetKeyDown(Controls.Instance.Fire) && !firing)
         {
             firing = true;
         }
@@ -29,6 +39,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         if (firing)
         {
+            muzzleTimer = 0.015f;
             // Ranged attacks
             if (isInRangedMode)
             {

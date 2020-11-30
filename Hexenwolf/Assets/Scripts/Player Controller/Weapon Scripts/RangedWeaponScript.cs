@@ -5,18 +5,20 @@ using UnityEngine;
 public class RangedWeaponScript : MonoBehaviour
 {
     [SerializeField] GameObject projectile;
-    [SerializeField] GameObject muzzleFlash;
     [SerializeField] float projectileSpeed = 20f;
     [SerializeField] float roundsPerMinute = 290f;
     [SerializeField] AudioClip soundEffect;
+    [SerializeField] GameObject muzzleFlash;
 
     float timeToShoot;
     // Update is called once per frame
     void Update()
     {
-        if(timeToShoot > 0f)
+        if (timeToShoot > 0f)
+        {
             timeToShoot -= Time.deltaTime;
-        muzzleFlash.SetActive(false);
+        }
+
     }
 
     /// <summary>
@@ -27,6 +29,7 @@ public class RangedWeaponScript : MonoBehaviour
         if (timeToShoot <= 0f)
         {
             muzzleFlash.SetActive(true);
+
             BulletScript Temp = Instantiate(projectile).GetComponent<BulletScript>();
             Temp.transform.position = transform.position;
             if (Temp != null)
