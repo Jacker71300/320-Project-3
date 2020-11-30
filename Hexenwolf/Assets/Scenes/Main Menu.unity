@@ -849,7 +849,7 @@ PrefabInstance:
     - target: {fileID: 8391623668281622524, guid: 64896cf2901667343b5042ee0876ffe9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Map Scene
+      value: Map 2 Scene Boogaloo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64896cf2901667343b5042ee0876ffe9, type: 3}

@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Win Scene.unity
     guid: fa1ca544fe92bac4c98cc5bdae884b0c
+  - enabled: 1
+    path: Assets/Scenes/Map 2 Scene Boogaloo.unity
+    guid: f8850d04439daed44bb13759511cd557
   m_configObjects: {}
