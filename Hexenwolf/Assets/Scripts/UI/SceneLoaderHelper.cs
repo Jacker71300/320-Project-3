@@ -12,5 +12,21 @@ public class SceneLoaderHelper : MonoBehaviour
             SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
     }
-    
+
+    public void LoadSceneAdditive(string sceneName)
+    {
+        if (sceneName != null)
+        {
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        }
+    }
+
+    public void UnloadScene(string sceneName)
+    {
+        if (sceneName != null)
+        {
+            SceneManager.UnloadSceneAsync(sceneName);
+        }
+    }
+
 }
