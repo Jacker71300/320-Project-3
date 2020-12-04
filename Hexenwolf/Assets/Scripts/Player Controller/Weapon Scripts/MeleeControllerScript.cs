@@ -14,7 +14,6 @@ public class MeleeControllerScript : MonoBehaviour
 
     [SerializeField] AudioClip soundEffect1;
     [SerializeField] AudioClip soundEffect2;
-    [SerializeField] float volume = 1f;
 
     // Update is called once per frame
     void Update()
@@ -43,12 +42,12 @@ public class MeleeControllerScript : MonoBehaviour
         if (isClawLeft)
         {
             leftClaw.SetActive(true);
-            GetComponent<AudioSource>().PlayOneShot(soundEffect1, volume);
+            GetComponent<AudioSource>().PlayOneShot(soundEffect1, AudioManager.Instance.sfxVolume);
         }
         else
         {
             rightClaw.SetActive(true);
-            GetComponent<AudioSource>().PlayOneShot(soundEffect2, volume);
+            GetComponent<AudioSource>().PlayOneShot(soundEffect2, AudioManager.Instance.sfxVolume);
         }
     }
 }
