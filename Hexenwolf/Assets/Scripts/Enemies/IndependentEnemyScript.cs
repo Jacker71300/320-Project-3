@@ -24,9 +24,12 @@ public class IndependentEnemyScript : MonoBehaviour
 	[SerializeField] float SweepSpeedInDegreesPerSecond = 40f;
 	[SerializeField] EnemyWeaponScript weapon;
 	[SerializeField] float distanceToPlayerToStartShooting = 3f;
+	[SerializeField] float visionAngle = 17.5f;
 	Vector3 nextPatrolPoint = new Vector3();
 	public float timeSinceLastSpottedPLayer = 0f;
 	public float waitTimer = 0f;
+	[SerializeField] float spotWaitTime = .5f;
+	public float spotTimer = 0f;
 	public AIState state = AIState.Patrol;
 
 	private void Start()
@@ -138,36 +141,38 @@ public class IndependentEnemyScript : MonoBehaviour
 		if (SpotPlayer())
 		{
 			timeSinceLastSpottedPLayer = 0f;
+			spotTimer += Time.deltaTime;
+			enemyTarget.transform.position = PlayerInfo.Instance.playerPos.position;
 			if (playerToThis.magnitude < distanceToPlayerToStartShooting)
 			{
 				enemyTarget.transform.position = transform.position;
-				float angleBetween = Vector3.Angle(playerToThis, transform.up );
+				float angleBetween = Vector3.Angle(playerToThis, transform.up);
 				if (Mathf.Abs(angleBetween) > 1f)
 				{
 					float angle = Mathf.Atan2(playerToThis.y, playerToThis.x) * Mathf.Rad2Deg - 90f;
 					Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 					transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * SweepSpeedInDegreesPerSecond);
 				}
-			}
-			else
-			{
-				enemyTarget.transform.position = PlayerInfo.Instance.playerPos.position;
+				if (Mathf.Abs(angleBetween) < visionAngle && weapon.CanShoot && spotTimer > spotWaitTime)
+				{
+					weapon.Attack();
+				}
 			}
 
-			if (weapon.CanShoot)
-			{
-				weapon.Attack();
-			}
+
 		}
 		else
 		{
-			enemyTarget.transform.position = PlayerInfo.Instance.playerPos.position;
+
 			timeSinceLastSpottedPLayer += Time.deltaTime;
 			if (timeSinceLastSpottedPLayer > playerSpottingEscapeTime)
 			{
+				spotTimer = 0;
 				state = AIState.Wait;
 			}
 		}
+
+
 	}
 
 	private void UpdatePathToAction()

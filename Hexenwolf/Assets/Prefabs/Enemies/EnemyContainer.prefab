@@ -128,6 +128,16 @@ PrefabInstance:
       propertyPath: path
       value: 
       objectReference: {fileID: 5809367303377265726}
+    - target: {fileID: 1635887103493561408, guid: fd2caeaa603d05540aa35574fc74d553,
+        type: 3}
+      propertyPath: spotWaitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635887103493561408, guid: fd2caeaa603d05540aa35574fc74d553,
+        type: 3}
+      propertyPath: distanceToPlayerToStartShooting
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1635887103493561410, guid: fd2caeaa603d05540aa35574fc74d553,
         type: 3}
       propertyPath: m_LocalPosition.x
