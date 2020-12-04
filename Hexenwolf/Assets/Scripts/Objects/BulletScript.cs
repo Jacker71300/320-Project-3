@@ -23,7 +23,7 @@ public class BulletScript : MonoBehaviour
 	{
 		speed = Speed;
 		direction = new Vector2(dir.x,dir.y).normalized;
-		transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+		transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90);
 		fromPlayer = FromPlayer;
 	}
 
@@ -98,7 +98,7 @@ public class BulletScript : MonoBehaviour
 		{
 			GameObject splat = Instantiate(bloodSplatter);
 			splat.transform.position = gameObject.transform.position;
-			splat.transform.forward = transform.right;
+			splat.transform.forward = transform.up;
 		}
 	}
 }
